@@ -1,0 +1,45 @@
+{% extends 'base_home.html' %}
+
+{% block head %}
+<title>Home</title>
+{% endblock %}
+
+
+{% block homecontent %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+            {% for recipe in recipes %}
+            <div class="col">
+                <div class="card shadow-sm">
+
+                    <!-- img  -->
+                    <img src="{{ recipe.img.url }}" alt="recipe picture" class="card-img-top" height="300"
+                        style="object-fit: cover">
+
+                    <div class="card-body">
+                        <!-- chef name -->
+                        <div class="card-title text-center h6">
+                            {{ recipe.title }}
+                        </div>
+                        <!-- actions  -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="/recipe/{{ recipe.id }}" class="btn btn-sm btn-outlign-secondary">View</a>
+                                {% if recipe.chef.id == user.id %}
+                                <a href="/edit/{{ recipe.id }}" class="btn btn-sm btn-outlign-secondary">Edit</a>
+                                <a href="/delete/{{ recipe.id }}" class="btn btn-sm btn-outlign-danger">Delete</a>
+                                {% endif %}
+                            </div>
+                            <small class="text-muted">By {{ recipe.chef.user_name }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

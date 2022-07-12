@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Sign Up</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <!-- error messages -->
+    {% if messages %}
+    {% for message in messages %}
+        <div>
+            <p class="alert alert-warning">{{ message }}</p>
+        </div>
+    {% endfor %}
+    {% endif %}
+    <br>
+
+    <div class="bg-img">
+        <div class="row-img">
+            <div class="col card">
+                <div class="card-body">
+                    <div class="card-title mb-4">
+                        <h2>Registeration</h2>
+                    </div>
+    
+                    <!-- Form for registeration -->
+                    <form action="/userin_home" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="form" value="register">
+
+                        <div class="mb-3">
+                            <label for="{{ form.pic.id_for_label }}" class="form-label">User Profile</label>
+                            {{ form.pic }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.user_name.id_for_label }}" class="form-label"> Name</label>
+                            {{ form.user_name }}
+                        </div>
+    
+                        <div class="mb-3">
+                            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                            {{ form.email }}
+                        </div>
+    
+                        <div class="mb-3">
+                            <label for="{{ form.password.id_for_label }}" class="form-label">Password</label>
+                            {{ form.password }}
+                            <div class="form-text">*Password should be at least 8 charachters</div>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label for="c_password" class="form-label">Confirm Password</label>
+                            <input type="password" name="c_password" id="c_password" class="form-control" required>
+                        </div>
+    
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-dark mt-3">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>{{ user.user_name }}</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid d-flex justify-content-center align-items-center mt-5">
+    <div class="card" style="height: 500px">
+        <div class="row align-items-center">
+            <div class="col">
+                <div class="text-center">
+
+                    <form action="/edit_profile" method="post" class="mt-3 px-4" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="{{ form.pic.id_for_label }}" class="form-label">Change profile image</label>
+                            {{ form.pic }}
+                        </div>
+
+                        <div class="mb-2">
+                            <h4 class="mt-3">chef. <input type="text" name="user_name" id="user_name"
+                                    value="{{ user.user_name }}" class="form-control"></h4>
+                        </div>
+
+                        <div class="mb-2">
+                            <input type="email" name="email" id="email" value="{{ user.email }}" class="form-control">
+                        </div>
+
+                        <div class="mb-2">
+                            <input type="password" name="password" id="password" placeholder="type new Password"
+                                class="form-control">
+                        </div>
+
+                        <div>
+                            <button class="btn btn-primary follow" disabled>{{ user.recipes.count}}
+                                recipes
+                            </button>
+                        </div>
+
+                        <div class="d-flex mt-3">
+                            <button type="submit" class="btn btn-dark mx-1">Update</button>
+                            <a href="/profile/{{ user.id }}" class="btn mx-1">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="col-auto">
+                <img src="{{ user.pic.url }}" class="card-img" height="498" style="object-fit:cover">
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+<br>
+<div class="container border border-bottum border-light"></div>
+<br>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for recipe in user.recipes.all %}
+            <div class="col">
+                <div class="card shadow-sm">
+
+                    <!-- image -->
+                    <img src="{{ recipe.img.url }}" alt="recipe picture" height="500" class="card-img-top"
+                        style="object-fit:cover">
+
+                    <div class="card-body">
+                        <!-- chef name -->
+                        <div class="card-title text-center h6">
+                            {{ recipe.title }}
+                        </div>
+                        <!-- actions -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="/recipe/{{ recipe.id }}" class="btn btn-sm btn-outlign-secondary">View</a>
+                                {% if chef.id == user.id %}
+                                <a href="/edit/{{ recipe.id }}" class="btn btn-sm btn-outlign-secondary">Edit</a>
+                                <a href="/delete/{{ recipe.id }}" class="btn btn-sm btn-outlign-danger">Delete</a>
+                                {% endif %}
+                            </div>
+                            <small class="text-muted">By {{ recipe.chef.user_name }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

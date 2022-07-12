@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>{{ recipe.title }}</title>
+{% endblock %}
+
+
+{% block content %}
+<div class="col">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="card" style="width: 70%">
+            <img src="{{ recipe.img.url }}" class="card-img-top" height="500" style="object-fit:cover">
+
+            <div class="text-center">
+
+                <h2 class="my-4"> {{ recipe.title }}</h2>
+
+                <div class="px-5 text-start">
+                    <h6>Ingrediants</h6>
+                    <ol>
+                        {% for ingredient in recipe.ingredient.all %}
+                        <li class="content">{{ ingredient.name }}</li>
+                        {% endfor %}
+                    </ol>
+                    <h6>Directions</h6>
+                    <p class="content">{{ recipe.desc|safe }}</p>
+                </div>
+
+            </div>
+
+            <br>
+            <div class="mx-3 border border-bottum"></div>
+
+            <div class="row p-3 align-items-center">
+                <div class="col-auto">
+                    <img src="{{ recipe.chef.pic.url }}" class="card-img-left" height="200" style="object-fit:cover">
+                </div>
+
+                <div class="col">
+                    <p>By: {{ recipe.chef.user_name }}</p>
+                    <p>crated at: {{ recipe.created_at | date }}</p>
+                    <p>Updated at: {{ recipe.updated_at | date }}</p>
+                </div>
+
+                <div class="col align-items-end">
+                    <a href="/home" class="btn btn-warning mx-1">Back</a>
+                    {% if recipe.chef.id == user.id %}
+                    <a href="/edit/{{ recipe.id }}" class="btn btn-dark mx-1">Edit</a>
+                    <a href="/delete/{{ recipe.id }}" class="btn btn-danger mx-1">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

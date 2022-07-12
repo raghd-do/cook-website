@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Sign Up</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <!-- error messages -->
+    {% if messages %}
+    {% for message in messages %}
+        <div>
+            <p class="alert alert-warning">{{ message }}</p>
+        </div>
+    {% endfor %}
+    {% endif %}
+    <br>
+
+    <div class="bg-img">
+        <div class="row-img">
+            <div class="col card">
+                <div class="card-body">
+                    <div class="card-title mb-4">
+                        <h2>Log in</h2>
+                    </div>
+    
+                    <!-- Form for registeration -->
+                    <form action="/userin_home" method="post">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="form" value="login">
+    
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" required>
+                        </div>
+    
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" required>
+                            <div class="form-text">*Password should be at least 8 charachters</div>
+                        </div>
+    
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-dark mt-3">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>All Chefs</title>
+{% endblock %}
+
+{% block content %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for chef in chefs %}
+            <div class="col">
+                <div class="card shadow-sm">
+
+                    <!-- img -->
+                    <img src="{{ chef.pic.url }}" alt="chef picture" class="card-img-top" height="300"
+                        style="object-fit:cover">
+
+                    <div class="card-body">
+                        <!-- chef name -->
+                        <div class="card-title text-center h6">
+                            {{ chef.user_name }}
+                        </div>
+                        <!-- actions -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="/profile/{{ chef.id }}" class="btn btn-sm btn-outlign-secondary">View</a>
+                                {% if chef.id == user.id %}
+                                <a href="/edit_profile" class="btn btn-sm btn-outlign-secondary">Edit</a>
+                                {% endif %}
+                            </div>
+                            <small class="text-muted">{{ chef.recipes.count }} Recipes</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

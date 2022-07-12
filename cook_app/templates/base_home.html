@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sidebars/">
+
+
+
+
+{% load static %}
+
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+
+    .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+    }
+
+    .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+    }
+
+    .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+</style>
+
+
+<!-- Custom styles for this template -->
+{% load static %}
+
+<link href="{% static 'css/sidebars.css' %}" rel="stylesheet">
+<title>Base Home</title>
+{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="row">
+        <!-- HEAD -->
+        <div class="col-auto">
+            <div class="flex-shrink-0 p-3 bg-white col-3" style="width: 280px">
+                <h3 class="d-flex align-items-center pb-3 mb-3 border-bottom">
+                    Filter by
+                </h3>
+
+
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    <!-- Allergy -->
+                    <ul class="list-unstyled ps-0">
+                        <li class="mb-1">
+                            <label class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="False">
+                                Allergy
+                            </label>
+                            <div class="collapse" id="home-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li>
+                                        <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                            <input class="form-check-input" type="checkbox" name="filter" value="egg"
+                                                id="egg">
+                                            <label class="form-check-label mx-2" for="egg">Egg</label>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                            <input class="form-check-input" type="checkbox" name="filter" value="peanut"
+                                                id="peanut">
+                                            <label class="form-check-label mx-2" for="peanut">Peanut</label>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                            <input class="form-check-input" type="checkbox" name="filter" value="soy"
+                                                id="soy">
+                                            <label class="form-check-label mx-2" for="soy">Soy</label>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                            <input class="form-check-input" type="checkbox" name="filter" value="wheat"
+                                                id="wheat">
+                                            <label class="form-check-label mx-2" for="wheat">Wheat</label>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                            <input class="form-check-input" type="checkbox" name="filter" value="dairy"
+                                                id="dairy">
+                                            <label class="form-check-label mx-2" for="dairy">Dairy</label>
+                                        </a>
+                                    </li>
+                            </div>
+                        </li>
+
+                        <!-- Food Group -->
+                        <li class="mb-1">
+                            <label class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                                Food Group
+                            </label>
+                            <div class="collapse" id="dashboard-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <small class="text-success">Comming soon ...</small>
+                                    <li>
+                                        <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                            <input class="form-check-input" type="checkbox" name="filter"
+                                                value="vegetables" id="vegetables" disabled>
+                                            <label class="form-check-label mx-2" for="vegetables">vegetables</label>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                            <input class="form-check-input" type="checkbox" name="filter"
+                                                value="starchy-food" id="starchy-food" disabled>
+                                            <label class="form-check-label mx-2" for="starchy-food">Starchy food</label>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                            <input class="form-check-input" type="checkbox" name="filter" value="juices"
+                                                id="juices" disabled>
+                                            <label class="form-check-label mx-2" for="juices">Juices</label>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                            <input class="form-check-input" type="checkbox" name="filter"
+                                                value="protein" id="protein" disabled>
+                                            <label class="form-check-label mx-2" for="protein">Protein</label>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <!-- Ingredients -->
+                        <li class="mb-1">
+                            <label class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                                Ingredients
+                            </label>
+                            <div class="collapse" id="orders-collapse">
+                                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                    <li>
+                                        <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                            <input class="form-check-input" type="checkbox" name="filter" value="oil"
+                                                id="oil">
+                                            <label class="form-check-label mx-2" for="oil">Oil</label>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                            <input class="form-check-input" type="checkbox" name="filter" value="milk"
+                                                id="milk">
+                                            <label class="form-check-label mx-2" for="milk">Milk</label>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                            <input class="form-check-input" type="checkbox" name="filter" value="butter"
+                                                id="butter">
+                                            <label class="form-check-label mx-2" for="butter">Butter</label>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="link-dark d-inline-flex text-decoration-none rounded">
+                                            <input class="form-check-input" type="checkbox" name="filter" value="eggs"
+                                                id="eggs">
+                                            <label class="form-check-label mx-2" for="eggs">Eggs</label>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </form>
+
+            </div>
+
+            {% if request.session.user %}
+            <div class="p-3 d-flex justify-content-center border-top mx-3">
+                <a href="/add_recipe" class="btn btn-warning">
+                    Add Recipe
+                </a>
+            </div>
+            {% endif %}
+
+
+        </div>
+        <div class="col">
+            {% block homecontent %}
+            {% endblock %}
+        </div>
+    </div>
+
+</div>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="sidebars.js"></script>
+{% endblock %}

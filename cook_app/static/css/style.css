@@ -1,0 +1,39 @@
+.row-img {
+    position: absolute;
+    right: 0;
+    margin: 30px;
+    width: 500px;
+    padding: 16px;
+
+}
+
+.bg-img {
+    background: url(../img/bg-img.jpg);
+
+    /* Control the height of the image */
+    height: 85vh;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+/* ------------------------------------- */
+.sied_navbar
+{
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin-right: 30px;
+    padding: 25px;
+    margin-left: -12px;
+    margin-top: -50px;
+}
+.cont
+{
+    display: flex;
+    flex-direction: row;
+}
+/* ------------------------------------ */

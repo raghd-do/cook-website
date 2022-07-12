@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<!-- select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<title>Home</title>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="d-flex align-items-center min-vh-100 py-3 py-md-0 bg-light">
+  <div class="container-fluid mx-5">
+    <div class="card mx-5">
+      <div class="row no-gutter">
+
+        <!-- image -->
+        <div class="col-md-5">
+          {% load static %}
+          <img src="{% static 'img/add_recipe.jpg' %}" alt="add-recipe" height="100%" class="card-img">
+        </div>
+
+        <!-- Form to add recipe -->
+        <div class="col-md-7">
+          <div class="card-body p-5 d-flex justify-content-center">
+
+            <div class="col">
+              <h2 class="card-title mb-5">Add a Recipe</h2>
+              <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                  <label for="{{ form.img.id_for_label }}" class="form-label">Recipe Image</label>
+                  {{ form.img }}
+                </div>
+
+                <div class="mb-3">
+                  <label for="{{ form.title.id_for_label }}" class="form-label">Recipe Name</label>
+                  {{ form.title }}
+                </div>
+
+                <div class="mb-3">
+                  <label for="ingredient" class="form-label">Ingredients</label>
+                  <br>
+                  <small class="text-warning">Try to select from already existing ingredients</small>
+                  <select id="ingredient" name="ingredients" class="form-control select-ingredients" multiple>
+
+                    {% for ingredient in ingredients %}
+
+                    <option value="{{ ingredient.id }}">{{ingredient.name}}</option>
+
+                    {% endfor %}
+
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="{{ form.desc.id_for_label }}" class="form-label">Recipe Directions</label>
+                  {{ form.media }}
+                  {{ form.desc }}
+                </div>
+
+                <div class="d-flex justify-content-end">
+                  <button type="submit" class="btn btn-dark mt-3 mx-1">Add</button>
+                  <a href="/home" class="btn mt-3 mx-1">Cancel</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<!-- select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{% load static %}
+<!-- static JS -->
+<script scr="{% static 'js/ingredient.js' %}"></script>
+
+<script>
+  console.log("loaded from script tag in add_recipe.html ");
+
+  $(document).ready(function () {
+    $('.select-ingredients').select2({
+      placeholder: 'Select or add ingredients',
+      tags: true,
+      tokenSeparators: [',', '/'],
+      allowClear: true,
+      theme: "classic",
+      "pagination": {
+        "more": true,
+      }
+    });
+  });
+</script>
+{% endblock %}

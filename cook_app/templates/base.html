@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="{% static 'css/sidebars.css' %}" rel="stylesheet">
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+
+    <header class="p-3 bg-dark text-white sticky-top">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+                style="display: flex; flex-direction: row">
+                <a href="/home" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none me-3">
+                    {% load static %}
+                    <img src="{% static 'img/logo-light.png' %}" alt="logo-light" class="me-2" style="width: 50px">
+                    <h2>Cook</h2>
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li>
+                        <a href="/home" class="nav-link px-2 text-secondry text-white">Home</a>
+                    </li>
+                    <li>
+                        <a href="/chefs" class="nav-link px-2 text-secondry text-white">All Chefs</a>
+                    </li>
+                </ul>
+                <form action="" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control form-control-dark text-white bg-dark" placeholder="Search"
+                        name="search" id="search">
+                </form>
+
+                <!-- Profile -->
+                {% if 'user' in request.session %}
+                <div class="dropdown text-end me-3">
+                    <a href="/#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownUser1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ user.pic.url }}" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                        <li>
+                            <a href="/profile/{{ user.id }}" class="dropdown-item">My profile</a>
+                            <a href="/logout" class="dropdown-item text-danger">Log out</a>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+
+                <div class="text-end">
+                    <!-- will appear only if user loged in -->
+                    {% if 'user' in request.session %}
+                    <!-- <a href="/logout" class="btn btn-warning">Logout</a> -->
+                    {% else %}
+                    <a href="/login" class="btn btn-outline-light me-2">Login</a>
+                    <a href="/register" class="btn btn-warning">Sign up</a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    {% block content %}
+    {% endblock %}
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
